@@ -145,6 +145,8 @@ if __name__ == "__main__":
                         help="number of grid cells in the z direction (special SKIRT runs) [default=False]")
     parser.add_argument("--wr", action="store_true",
                         help="minimum weight reduction (special SKIRT runs) [default=False]")
+    parser.add_argument("--minfs", action="store_true",
+                        help="minimum number of forced scattering events (special SKIRT runs) [default=False]")
     parser.add_argument("-e", "--eps", help="Save the plot as an encapsulated file",
                         action="store_true")
     parser.add_argument("-p", "--png", help="Save the plot as a portable network graphics file",
@@ -200,6 +202,13 @@ if __name__ == "__main__":
         moddisplaynames = ['SKIRT (wr=1e8)','SKIRT (wr=1e7)','SKIRT (wr=1e6)','SKIRT (wr=1e5)','SKIRT (wr=1e4)','SKIRT (wr=1e3)']
         modnames = ['skirtwr1e8','skirtwr1e7','skirtwr1e6','skirtwr1e5','skirtwr1e4','skirtwr1e3']
         imodnames = ['skirtwr/' + modname + '_slab_eff' for modname in modnames]
+        scomp = 0
+    elif args.minfs:
+        moddisplaynames = ['SKIRT (minfs=1)','SKIRT (minfs=3)','SKIRT (minfs=10)','SKIRT (minfs=30)',
+                           'SKIRT (minfs=100)','SKIRT (minfs=200)','SKIRT (minfs=400)']
+        modnames = ['skirtminfs001wr1e7','skirtminfs003wr1e7','skirtminfs010wr1e7','skirtminfs030wr1e7',
+                    'skirtminfs100wr1e7','skirtminfs200wr1e7','skirtminfs400wr1e7']
+        imodnames = ['skirtminfs/' + modname + '_slab_eff' for modname in modnames]
         scomp = 0
     else:
         moddisplaynames = ['CRT','DART-ray','DIRTY','Hyperion','SKIRT','SOC','TRADING']
